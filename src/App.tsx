@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components";
+import theme, { GlobalStyle } from "./components/00_theme";
+
+import MainComp from "./components/01_main";
+import StackComp from "./components/02_stack";
+import ProjectsComp from "./components/03_projects";
+import ETC from "./components/04_etc";
+import Footer from "./components/05_footer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <ThemeProvider theme={theme}>
+         <GlobalStyle />
+         <MainComp />
+         <StackComp />
+         <ProjectsComp />
+         <ETC />
+         <Footer />
+      </ThemeProvider>
+   );
 }
 
 export default App;
