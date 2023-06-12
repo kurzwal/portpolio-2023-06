@@ -38,7 +38,7 @@ const StyledCircleButton = styled(Button)<CircleButtonStyleProps>`
       left: ${({ left }) => left || 0};
 
       &:hover {
-         background-color: #aaa;
+         background-color: #b08968;
          color: #fff;
       }
    }

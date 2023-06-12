@@ -3,13 +3,13 @@ import { createGlobalStyle } from "styled-components";
 const theme = {
    colors: {
       title: "#000000aa",
-      titleshadow: "#00000099",
-      text: "#000000", // 가장 진한 색
+      titleshadow: "#333333bb",
+      text: "#000000",
       text2: "#555",
-      bg1: "#fff0cf", // 가장 옅은 색
-      bg2: "#E5E2D9aa", // 투명도 주기 (aa정도?)
-      bg3: "#B8B5B077", // 투명도 주기 (77정도?)
-      bg4: "#68676377", // 투명도 주기 (aa정도?)
+      bg1: "#fff0cf",
+      bg2: "#ddb892aa",
+      bg3: "#ddb89277",
+      bg4: "#b08968aa",
       tab: "#7f5539",
       footerbg: "#68676377",
       footertext: "#333333",

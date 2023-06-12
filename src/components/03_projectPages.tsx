@@ -18,14 +18,14 @@ import mvcImg from "../assets/mvcdesc.png";
 import cpzGif from "../assets/cpztest.gif";
 
 interface PosProps {
-   posX: string;
+   posx: string;
    trans: string;
 }
 const ContentWrap = styled.div<PosProps>`
    width: 70%;
    height: 25vh;
    top: 17vh;
-   left: ${({ posX }) => posX};
+   left: ${({ posx }) => posx};
    position: absolute;
    overflow: hidden;
    transition: ${({ trans }) => trans};
@@ -98,7 +98,6 @@ const EnvContainer = styled.div`
 `;
 
 const EnvName = styled.div`
-   font-weight: bold;
    width: 25%;
 `;
 
@@ -160,7 +159,7 @@ export const Pj1Page1 = (props: PosProps) => {
    ];
 
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <FlexColumnDiv>
             {contents.map((content) => {
                const [key, value] = Object.entries(content)[0];
@@ -191,7 +190,11 @@ const EnvComp = ({ name, icons, contents, sizes }: EnvProps) => {
          <EnvName>{name}</EnvName>
          <EnvDetail>
             {icons.map((icon, index) => (
-               <EnvTag icon={icon} size={sizes ? sizes[index] : ""}>
+               <EnvTag
+                  key={contents[index]}
+                  icon={icon}
+                  size={sizes ? sizes[index] : ""}
+               >
                   {contents[index]}
                </EnvTag>
             ))}
@@ -204,7 +207,7 @@ export const Pj1Page2 = (props: PosProps) => {
    const [hovered, setHovered] = useState("");
    return (
       <ContentWrap
-         posX={props.posX}
+         posx={props.posx}
          trans={props.trans}
          style={{ borderRadius: "15px" }}
       >
@@ -217,6 +220,7 @@ export const Pj1Page2 = (props: PosProps) => {
             <FrontTitle>Front</FrontTitle>
             {frontConfigs.map((config) => (
                <EnvComp
+                  key={config.name + "1"}
                   name={config.name}
                   icons={config.icons}
                   contents={config.contents}
@@ -232,6 +236,7 @@ export const Pj1Page2 = (props: PosProps) => {
             <BackTitle>Back</BackTitle>
             {backConfigs.map((config) => (
                <EnvComp
+                  key={config.name + ""}
                   name={config.name}
                   icons={config.icons}
                   contents={config.contents}
@@ -264,7 +269,7 @@ const DescText = styled.div`
 
 export const Pj1Page3 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <PageSmallTitle>팀원에게 MVC패턴 강의</PageSmallTitle>
          <FlexSBDiv>
             <TextTemplate>
@@ -288,7 +293,7 @@ export const Pj1Page3 = (props: PosProps) => {
 
 export const Pj1Page4 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <PageSmallTitle>프론트엔드의 부족함</PageSmallTitle>
          <TextTemplate>
             백엔드 강의 특성상 프론트엔드 공부에 부족함이 있어서
@@ -305,7 +310,7 @@ export const Pj1Page4 = (props: PosProps) => {
 
 export const Pj1Page5 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <PageSmallTitle>RESTful API를 구현했습니다</PageSmallTitle>
          <DescText>
             회원 관리, 일정 관리, 공지사항 및 댓글 등 30여개의 API를
@@ -337,7 +342,7 @@ export const Pj2Page1 = (props: PosProps) => {
    ];
 
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <FlexColumnDiv>
             {contents.map((content) => {
                const [key, value] = Object.entries(content)[0];
@@ -357,7 +362,7 @@ export const Pj2Page2 = (props: PosProps) => {
    const [hovered, setHovered] = useState("");
    return (
       <ContentWrap
-         posX={props.posX}
+         posx={props.posx}
          trans={props.trans}
          style={{ borderRadius: "15px" }}
       >
@@ -370,6 +375,7 @@ export const Pj2Page2 = (props: PosProps) => {
             <FrontTitle>Front</FrontTitle>
             {frontConfigs2.map((config) => (
                <EnvComp
+                  key={config.name + "2"}
                   name={config.name}
                   icons={config.icons}
                   contents={config.contents}
@@ -386,6 +392,7 @@ export const Pj2Page2 = (props: PosProps) => {
             <BackTitle style={{ color: "#fff" }}>Back</BackTitle>
             {backConfigs2.map((config) => (
                <EnvComp
+                  key={config.name + "2"}
                   name={config.name}
                   icons={config.icons}
                   contents={config.contents}
@@ -398,7 +405,7 @@ export const Pj2Page2 = (props: PosProps) => {
 
 export const Pj2Page3 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <PageSmallTitle>WS 통신과 Phaser 연결</PageSmallTitle>
          <FlexSBDiv>
             <TextTemplate>
@@ -425,7 +432,7 @@ export const Pj2Page3 = (props: PosProps) => {
 
 export const Pj2Page4 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
+      <ContentWrap posx={props.posx} trans={props.trans}>
          <PageSmallTitle>라이브러리간의 호환성 고려</PageSmallTitle>
          <TextTemplate>
             Phaser가 클래스 컴포넌트 기반이기 때문에 <br />
@@ -438,22 +445,23 @@ export const Pj2Page4 = (props: PosProps) => {
 
 export const Pj2Page5 = (props: PosProps) => {
    return (
-      <ContentWrap posX={props.posX} trans={props.trans}>
-         <PageSmallTitle>1번제목</PageSmallTitle>
+      <ContentWrap posx={props.posx} trans={props.trans}>
+         <PageSmallTitle>채팅창 연동 및 저장</PageSmallTitle>
          <DescText>
-            회원 관리, 일정 관리, 공지사항 및 댓글 등 30여개의 API를
-            구현했습니다
+            WS 통신으로 실시간 채팅을 Phaser와 채팅창 컴포넌트 양쪽에 띄우고,
+            <br />
+            DB에 저장하는 기능을 만들 예정입니다.
          </DescText>
-         <PageSmallTitle>관계형 데이터베이스를 구축했습니다</PageSmallTitle>
+         <PageSmallTitle>아바타 기능</PageSmallTitle>
          <DescText>
-            MySQL을 통해 정형화된 데이터베이스를 구축하고 쿼리문과 JPA문법으로
-            적절하게 데이터를 조작했습니다
+            Phaser 상에서 여러 아바타를 재화로 구매하고 갈아입는 기능을 구현할
+            예정입니다.
          </DescText>
-         <PageSmallTitle>
-            리액트와 MUI를 사용하여 동적 웹을 구현했습니다
-         </PageSmallTitle>
+         <PageSmallTitle>유튜브 재생 중 좋아요 기능</PageSmallTitle>
          <DescText>
-            카카오 맵 API의 활용을 위해 일부 페이지에 동적인 SPA를 도입했습니다
+            현재 재생중인 동영상이 마음에 든다면 좋아요 버튼을 누름으로써 <br />
+            동영상을 예약한 사람에게 특정 재화를 주는 등의 기능을 구현할
+            예정입니다.
          </DescText>
       </ContentWrap>
    );

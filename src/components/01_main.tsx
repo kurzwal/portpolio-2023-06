@@ -10,17 +10,22 @@ import {
 } from "./00_SCTemplate";
 
 const BackgroundComp = styled(BackgroundTemplate)`
+   background-image: url(${profileImg});
    height: 90vh;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+`;
 
-   &::before {
-      filter: blur(15px);
-      background-image: url(${profileImg});
-      position: absolute;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-   }
+const BlurFilter = styled.div`
+   width: 100%;
+   height: 100%;
+   backdrop-filter: blur(15px);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
 `;
 
 const ProfileImgComp = styled.div`
@@ -48,26 +53,29 @@ const TextComp = styled(TextTemplate)`
 const MainComp = () => {
    return (
       <BackgroundComp>
-         <ProfileImgComp></ProfileImgComp>
-         <ProfileTextCard>
-            <FlexColumnDiv>
-               <Fade in={true} timeout={1000}>
-                  <H1Template>어쩌다 풀스택, 유열림입니다</H1Template>
-               </Fade>
-               <Fade
-                  in={true}
-                  timeout={1000}
-                  style={{ transitionDelay: "400ms" }}
-               >
-                  <TextComp>
-                     {" "}
-                     어떤 기술을 사용할지 보다 어떤 기능을 만들지 더 고민하는
-                     개발자입니다. <br />
-                     백엔드로 시작했으나 필연적으로 프론트도 만들게 되었습니다.
-                  </TextComp>
-               </Fade>
-            </FlexColumnDiv>
-         </ProfileTextCard>
+         <BlurFilter>
+            <ProfileImgComp></ProfileImgComp>
+            <ProfileTextCard>
+               <FlexColumnDiv>
+                  <Fade in={true} timeout={1000}>
+                     <H1Template>어쩌다 풀스택, 유열림입니다</H1Template>
+                  </Fade>
+                  <Fade
+                     in={true}
+                     timeout={1000}
+                     style={{ transitionDelay: "400ms" }}
+                  >
+                     <TextComp>
+                        {" "}
+                        어떤 기술을 사용할지 보다 어떤 기능을 만들지 더 고민하는
+                        개발자입니다. <br />
+                        백엔드로 시작했으나 필연적으로 프론트도 만들게
+                        되었습니다.
+                     </TextComp>
+                  </Fade>
+               </FlexColumnDiv>
+            </ProfileTextCard>
+         </BlurFilter>
       </BackgroundComp>
    );
 };

@@ -36,7 +36,7 @@ const Space = styled.div`
 const Footer = () => {
    return (
       <Background>
-         <Title>Contact Me</Title>
+         <Title>Contact</Title>
          <Bold>Phone : </Bold>
          <Text>０１０-３１１２-２９７６</Text>
          <Space></Space>

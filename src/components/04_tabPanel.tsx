@@ -13,8 +13,15 @@ import youtube from "../assets/icons/youtube.svg";
 import caliGif from "../assets/cali.gif";
 import boringImg from "../assets/boring.png";
 
-import { FlexColumnDiv, H3Template, TextTemplate, Link } from "./00_SCTemplate";
+import {
+   FlexColumnDiv,
+   H3Template,
+   TextTemplate,
+   Link,
+   H2Template,
+} from "./00_SCTemplate";
 import { configs } from "./02_stackConfigs";
+import { PageTurnerLeft, PageTurnerRight } from "./03_projectsComp";
 
 const PanelWrap = styled.div`
    width: 100%;
@@ -47,6 +54,7 @@ const PanelIcon = styled.div<IconProps>`
    border-radius: 50%;
    width: 10vh;
    height: 10vh;
+   box-shadow: 3px 3px 5px ${(props) => props.theme.colors.bg4};
 `;
 
 const PanelBook = styled(PanelIcon)`
@@ -247,5 +255,138 @@ export const Panel3 = () => {
             </Text>
          </PanelItem>
       </PanelWrap>
+   );
+};
+const PanelPageWrap = styled.div`
+   overflow: hidden;
+`;
+export const Panel4 = () => {
+   const [pageIndex, setPageIndex] = useState(0);
+   const handlePageLeft = () => {
+      setPageIndex(pageIndex - 1);
+   };
+
+   const handlePageRight = () => {
+      setPageIndex(pageIndex + 1);
+   };
+   return (
+      <div>
+         <PageTurnerLeft
+            onClick={handlePageLeft}
+            style={{ display: pageIndex === 0 ? "none" : "block", left: "2vw" }}
+         />
+         <PageTurnerRight
+            onClick={handlePageRight}
+            style={{
+               display: pageIndex === 1 ? "none" : "block",
+               right: "2vw",
+            }}
+         />
+         {pageIndex === 0 && <Panel4Pg1 />}
+         {pageIndex === 1 && <Panel4Pg2 />}
+      </div>
+   );
+};
+const PageWrap = styled.div`
+   width: 100%;
+   height: 100%;
+   padding: 6vh 3vw 0;
+`;
+const PageTitle = styled(H3Template)`
+   left: 0;
+   margin-bottom: 3vh;
+`;
+const InfoWrap = styled.div`
+   display: flex;
+   justify-content: baseline;
+   align-items: center;
+   margin-left: 1vw;
+   margin-bottom: 1vh;
+`;
+const InfoLabel = styled(TextTemplate)`
+   width: 7vw;
+   font-weight: bold;
+`;
+const InfoContent = styled(TextTemplate)``;
+interface InfoProps {
+   label: string;
+   content: string;
+}
+const InfoBold = (props: InfoProps) => {
+   return (
+      <InfoWrap>
+         <InfoLabel>{props.label}</InfoLabel>
+         <InfoContent>{props.content}</InfoContent>
+      </InfoWrap>
+   );
+};
+const Info = (props: InfoProps) => {
+   return (
+      <InfoWrap>
+         <InfoContent style={{ width: "10vw", textAlign: "center" }}>
+            {props.label}
+         </InfoContent>
+         <InfoContent>{props.content}</InfoContent>
+      </InfoWrap>
+   );
+};
+const Panel4Pg1 = () => {
+   return (
+      <PageWrap>
+         <PageTitle>기본정보</PageTitle>
+         <InfoBold label="이름" content="유열림" />
+         <InfoBold label="생년월일" content="1994.06.04" />
+         <InfoBold label="주소" content="경기도 수원시 장안구" />
+         <PageTitle>병역사항</PageTitle>
+         <InfoBold label="기간" content="2016.05.31 ~ 2018.02.28" />
+         <InfoBold label="내용" content="육군 병장 만기전역 (TOD 운용병)" />
+      </PageWrap>
+   );
+};
+const EduInfoWrap = styled.div`
+   padding-left: 1vw;
+`;
+const EduInfo = (props: InfoProps) => {
+   return (
+      <InfoWrap style={{ marginBottom: "0.5vh" }}>
+         <InfoLabel style={{ width: "5vw", fontWeight: "normal" }}>
+            {props.label}
+         </InfoLabel>
+         <InfoContent>{props.content}</InfoContent>
+      </InfoWrap>
+   );
+};
+const Panel4Pg2 = () => {
+   return (
+      <PageWrap>
+         <PageTitle style={{ marginBottom: "2vh" }}>학력 및 교육사항</PageTitle>
+         <Info
+            label="2013.03 ~ 2019.08"
+            content="경기대학교 수학과 학사과정 졸업"
+         />
+         <Info
+            label="2022.11 ~ 2023.02"
+            content="코리아IT아카데미 JAVA기반 백엔드 수료"
+         />
+         <EduInfoWrap>
+            <EduInfo label="교육기관" content="코리아 IT 아카데미 부산점" />
+            <EduInfo
+               label="교육과정"
+               content="JAVA 기반 백엔드 개발자 양성과정"
+            />
+            <EduInfo label="교육시간" content="09:00 ~ 13:00 (주 5일)" />
+            <EduInfo label="교육내용" content="JAVA 기초문법과 디자인패턴" />
+            <EduInfo label="" content="데이터베이스 구성 및 MySQL" />
+            <EduInfo
+               label=""
+               content="HTML, CSS, Javascript를 이용한 프론트엔드 구성"
+            />
+            <EduInfo label="" content="Spring Boot를 사용한 백엔드 구성" />
+            <EduInfo
+               label=""
+               content="React / Spring Boot / MySQL 기반의 팀프로젝트 (팀장 역)"
+            />
+         </EduInfoWrap>
+      </PageWrap>
    );
 };

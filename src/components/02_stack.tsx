@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Fade from "@mui/material/Fade";
 
+import theme from "./00_theme";
 import {
    BackgroundTemplate,
    H2Template,
@@ -107,6 +108,7 @@ const StackComp = () => {
    useEffect(() => {
       observerHanlder(observeRef, setIsVisible);
    }, []);
+
    return (
       <BackgroundTemplate>
          <TitleTemplate>Stacks</TitleTemplate>

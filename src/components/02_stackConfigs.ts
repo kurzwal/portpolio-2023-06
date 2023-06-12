@@ -8,8 +8,6 @@ import mongodbIcon from "../assets/icons/mongodb.svg";
 import mysqlIcon from "../assets/icons/mysql.svg";
 import nodejsIcon from "../assets/icons/nodejs.svg";
 import pythonIcon from "../assets/icons/python.svg";
-import reactIcon from "../assets/icons/react.svg";
-import typescriptIcon from "../assets/icons/typescript.svg";
 
 export interface ButtonConfig {
    name: string;

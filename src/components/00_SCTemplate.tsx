@@ -10,16 +10,6 @@ export const BackgroundTemplate = styled.div`
    position: relative;
    margin-bottom: 10vh;
    overflow: hidden;
-
-   &::before {
-      background-color: ${(props) => props.theme.colors.bg1};
-      content: "";
-      top: -10%;
-      left: -10%;
-      width: 120%;
-      height: 120%;
-      z-index: -1;
-   }
 `;
 
 export const H1Template = styled.h1`
@@ -47,10 +37,10 @@ export const TitleTemplate = styled(H1Template)`
    top: 1vh;
    left: 20vw;
    color: ${(props) => props.theme.colors.title};
-   text-shadow: 10px 3px 10px ${(props) => props.theme.colors.titleshadow};
+   text-shadow: 3px 3px 10px ${(props) => props.theme.colors.titleshadow};
 `;
 
-export const TextTemplate = styled.p`
+export const TextTemplate = styled.div`
    font-size: 1.1rem;
    color: ${(props) => props.theme.colors.text};
    line-height: 1.5;
@@ -82,17 +72,19 @@ interface LinkProps {
 }
 
 const LinkIcon = styled.div<LinkProps>`
-   width: 1.3rem;
-   height: 1.3rem;
+   width: 1.2rem;
+   height: 1.2rem;
    display: inline-block;
    vertical-align: bottom;
-   margin-bottom: 2px;
-   background-image: ${({ icon }) => (icon ? `url(${icon})` : "none")};
+   margin-bottom: 5px;
+   margin-right: 2px;
+   background-image: ${({ icon }) => `url(${icon})`};
    background-position: center;
    background-repeat: no-repeat;
    background-size: 100%;
 `;
 const LinkText = styled.a<LinkProps>`
+   line-height: 1rem;
    font-size: ${({ fontSize }) => (fontSize ? `${fontSize}` : "1rem")};
    text-decoration: underline;
    color: ${(props) => props.theme.colors.text};

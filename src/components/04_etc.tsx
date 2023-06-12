@@ -4,7 +4,7 @@ import { Tabs, Tab, createTheme, ThemeProvider, Fade } from "@mui/material";
 import mainTheme from "./00_theme";
 
 import { BackgroundTemplate, ObserveDiv, TitleTemplate } from "./00_SCTemplate";
-import { Panel1, Panel2, Panel3 } from "./04_tabPanel";
+import { Panel1, Panel2, Panel3, Panel4 } from "./04_tabPanel";
 import { observerHanlder } from "./00_services";
 
 const theme = createTheme({
@@ -33,6 +33,7 @@ const PanelContainer = styled.div`
    border-radius: 0px 10px 10px 10px;
    width: 40vw;
    height: 50vh;
+   overflow: hidden;
 `;
 
 const tabProps = (index: number) => {
@@ -98,6 +99,11 @@ const ETC = () => {
                         {...tabProps(2)}
                         onMouseEnter={() => handleChange(2)}
                      />
+                     <Tab
+                        label="이력사항"
+                        {...tabProps(3)}
+                        onMouseEnter={() => handleChange(3)}
+                     />
                   </Tabs>
                </TabsContainer>
             </Fade>
@@ -106,6 +112,7 @@ const ETC = () => {
                   {value === 0 && <Panel1 />}
                   {value === 1 && <Panel2 />}
                   {value === 2 && <Panel3 />}
+                  {value === 3 && <Panel4 />}
                </PanelContainer>
             </Fade>
             <ObserveDiv ref={observeRef} />

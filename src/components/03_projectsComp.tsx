@@ -69,6 +69,7 @@ const ProjectTitle = styled(H2Template)`
 
 const ProjectText = styled(TextTemplate)`
    margin: 0;
+   margin-left: 10px;
    color: ${(props) => props.theme.colors.text2};
 `;
 
@@ -107,12 +108,12 @@ const PageTurner = styled.div`
    }
 `;
 
-const PageTurnerLeft = styled(PageTurner)`
+export const PageTurnerLeft = styled(PageTurner)`
    transform: rotate(225deg);
    left: 3vw;
 `;
 
-const PageTurnerRight = styled(PageTurner)`
+export const PageTurnerRight = styled(PageTurner)`
    transform: rotate(45deg);
    right: 3vw;
 `;
@@ -147,11 +148,11 @@ export const Project2: React.FC<ProjectProps> = ({ onMouseEnter }) => {
 
 export const Project1Desc = () => {
    const pj1Pages: JSX.Element[] = [
-      <Pj1Page1 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj1Page2 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj1Page3 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj1Page4 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj1Page5 posX="0%" trans="all 0.2s ease-out" />,
+      <Pj1Page1 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj1Page2 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj1Page3 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj1Page4 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj1Page5 posx="0%" trans="all 0.2s ease-out" />,
    ];
    const pj1Titles = [
       "프로젝트 개요",
@@ -182,18 +183,18 @@ export const Project1Desc = () => {
 };
 export const Project2Desc = () => {
    const pj2Pages: JSX.Element[] = [
-      <Pj2Page1 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj2Page2 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj2Page3 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj2Page4 posX="0%" trans="all 0.2s ease-out" />,
-      <Pj2Page5 posX="0%" trans="all 0.2s ease-out" />,
+      <Pj2Page1 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj2Page2 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj2Page3 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj2Page4 posx="0%" trans="all 0.2s ease-out" />,
+      <Pj2Page5 posx="0%" trans="all 0.2s ease-out" />,
    ];
    const pj2Titles = [
       "프로젝트 개요",
       "개발 환경",
       "잘 한 부분",
       "아쉬웠던 부분",
-      "여기 뭐쓰지",
+      "앞으로 구현하고 싶은 기능",
    ];
    return (
       <Fade in={true} timeout={500}>
@@ -201,7 +202,11 @@ export const Project2Desc = () => {
             <FlexDiv>
                <ProjectIcon icon={icon2} />
                <ProjectTitle>침팬지 극장</ProjectTitle>
-               <Link href="#" icon={github} fontSize="1.2rem">
+               <Link
+                  href="https://github.com/kurzwal/CPZ-Theater"
+                  icon={github}
+                  fontSize="1.2rem"
+               >
                   GitHub
                </Link>
             </FlexDiv>
@@ -247,7 +252,7 @@ const ProjectDetail = (props: PjDtlProps) => {
          const index = i % compLen;
          const page = cloneElement(pageComponents[index], {
             key: "page" + pages.length,
-            posX: getPosition(i - compLen - pageIndex),
+            posx: getPosition(i - compLen - pageIndex),
             trans: trans,
          });
          pages.push(page);
