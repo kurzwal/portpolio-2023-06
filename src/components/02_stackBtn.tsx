@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { Button, ButtonProps } from "@mui/material";
 
 interface CircleButtonStyleProps {
-   customsize?: string;
-   top?: string;
-   left?: string;
+   customsize?: number;
+   top?: number;
+   left?: number;
    bgsize?: string;
    bgimage?: string;
    bgcolor?: string;
@@ -23,8 +22,10 @@ const StyledCircleButton = styled(Button)<CircleButtonStyleProps>`
       background-repeat: no-repeat;
       white-space: nowrap;
       color: transparent;
-      width: ${({ customsize }) => customsize || "100px"};
-      height: ${({ customsize }) => customsize || "100px"};
+      min-width: 0;
+      min-height: 0;
+      width: ${({ customsize }) => `${customsize}vw` || "10px"};
+      height: ${({ customsize }) => `${customsize}vw` || "10px"};
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -34,12 +35,23 @@ const StyledCircleButton = styled(Button)<CircleButtonStyleProps>`
       text-transform: none;
       transition: all 0.3s ease;
       position: absolute;
-      top: ${({ top }) => top || 0};
-      left: ${({ left }) => left || 0};
+      top: ${({ top }) => (top ? `${top}vw` : 0)};
+      left: ${({ left }) => (left ? `${left}vw` : 0)};
 
       &:hover {
          background-color: #b08968;
          color: #fff;
+      }
+      @media (max-width: 768px) {
+         overflow: hidden;
+         font-size: 5px;
+         white-space: wrap;
+         width: ${({ customsize }) =>
+            customsize ? `${customsize * 1.5}vw` : "10px"};
+         height: ${({ customsize }) =>
+            customsize ? `${customsize * 1.5}vw` : "10px"};
+         top: ${({ top }) => (top ? `${top * 1.5}vw` : 0)};
+         left: ${({ left }) => (left ? `${left * 1.5}vw` : 0)};
       }
    }
 `;

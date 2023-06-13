@@ -8,12 +8,10 @@ import {
    H2Template,
    TextTemplate,
    Line,
-   H1Template,
    Link,
-   H3Template,
 } from "./00_SCTemplate";
 import { Fade } from "@mui/material";
-import { useEffect, useRef, useState, cloneElement } from "react";
+import { useEffect, useState, cloneElement } from "react";
 import {
    Pj1Page1,
    Pj1Page2,
@@ -33,7 +31,7 @@ const ProjectCard = styled(FlexColumnDiv)`
    background-color: ${(props) => props.theme.colors.bg3};
    box-sizing: border-box;
    padding: 2.2vh;
-   width: 21.5vw;
+   width: 49%;
    height: 100%;
    justify-content: space-between;
    cursor: pointer;
@@ -59,18 +57,20 @@ const ProjectIcon = styled.div<IconProps>`
    background-size: ${({ size }) => (size ? size : "100%")};
    background-position: center;
    background-repeat: no-repeat;
-   width: 2vw;
-   height: 2vw;
+   width: 1.8rem;
+   height: 1.8rem;
 `;
 
 const ProjectTitle = styled(H2Template)`
    margin: 0 10px 0 15px;
+   white-space: nowrap;
 `;
 
 const ProjectText = styled(TextTemplate)`
    margin: 0;
    margin-left: 10px;
    color: ${(props) => props.theme.colors.text2};
+   white-space: nowrap;
 `;
 
 const DescWrap = styled(FlexColumnDiv)`
@@ -101,6 +101,7 @@ const PageTurner = styled.div`
    box-shadow: 3px -3px 3px rgba(0, 0, 0, 0.3);
    position: absolute;
    top: 25vh;
+   z-index: 3;
    cursor: pointer;
    &:active {
       margin-top: 2px;
@@ -122,26 +123,33 @@ interface ProjectProps {
    onMouseEnter?: () => void;
 }
 
-export const Project1: React.FC<ProjectProps> = ({ onMouseEnter }) => {
+export const Project1 = (props: ProjectProps) => {
    return (
-      <ProjectCard onMouseEnter={onMouseEnter}>
+      <ProjectCard onMouseEnter={props.onMouseEnter}>
          <FlexDiv>
             <ProjectIcon icon={icon1} />
             <ProjectTitle>I Run You</ProjectTitle>
          </FlexDiv>
-         <ProjectText>SNS 기반 달리기 스케쥴 공유 서비스</ProjectText>
+         <ProjectText>
+            SNS 기반 <wbr />
+            달리기 스케쥴 <wbr />
+            공유 서비스
+         </ProjectText>
       </ProjectCard>
    );
 };
 
-export const Project2: React.FC<ProjectProps> = ({ onMouseEnter }) => {
+export const Project2 = (props: ProjectProps) => {
    return (
-      <ProjectCard onMouseEnter={onMouseEnter}>
+      <ProjectCard onMouseEnter={props.onMouseEnter}>
          <FlexDiv>
             <ProjectIcon icon={icon2} />
             <ProjectTitle>침팬지 극장</ProjectTitle>
          </FlexDiv>
-         <ProjectText>실시간 유튜브 같이 보기 서비스</ProjectText>
+         <ProjectText>
+            실시간 유튜브 <wbr />
+            같이 보기 서비스
+         </ProjectText>
       </ProjectCard>
    );
 };

@@ -24,4 +24,9 @@ export const GlobalStyle = createGlobalStyle`
       padding: 0;
       background-color: ${({ theme }) => theme.colors.bg1};
    }
+   html {
+      @media (max-width: 1580px) {
+         font-size: 14px;
+      }
+   }
 `;

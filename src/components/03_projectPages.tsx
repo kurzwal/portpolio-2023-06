@@ -29,6 +29,10 @@ const ContentWrap = styled.div<PosProps>`
    position: absolute;
    overflow: hidden;
    transition: ${({ trans }) => trans};
+   @media (max-width: 768px) {
+      top: 20vh;
+      height: 35vh;
+   }
 `;
 
 type ColorProps = {

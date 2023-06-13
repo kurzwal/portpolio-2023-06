@@ -15,6 +15,7 @@ export const BackgroundTemplate = styled.div`
 export const H1Template = styled.h1`
    font-size: 2.5rem;
    font-weight: bold;
+   white-space: nowrap;
    color: ${(props) => props.theme.colors.title};
    margin-bottom: 1rem;
 `;
@@ -38,6 +39,12 @@ export const TitleTemplate = styled(H1Template)`
    left: 20vw;
    color: ${(props) => props.theme.colors.title};
    text-shadow: 3px 3px 10px ${(props) => props.theme.colors.titleshadow};
+   @media (max-width: 1580px) {
+      left: 10vw;
+   }
+   @media (max-width: 992px) {
+      left: 3vw;
+   }
 `;
 
 export const TextTemplate = styled.div`
@@ -87,6 +94,7 @@ const LinkText = styled.a<LinkProps>`
    line-height: 1rem;
    font-size: ${({ fontSize }) => (fontSize ? `${fontSize}` : "1rem")};
    text-decoration: underline;
+   white-space: nowrap;
    color: ${(props) => props.theme.colors.text};
    cursor: pointer;
    &:hover {

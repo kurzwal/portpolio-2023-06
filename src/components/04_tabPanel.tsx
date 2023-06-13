@@ -13,14 +13,7 @@ import youtube from "../assets/icons/youtube.svg";
 import caliGif from "../assets/cali.gif";
 import boringImg from "../assets/boring.png";
 
-import {
-   FlexColumnDiv,
-   H3Template,
-   TextTemplate,
-   Link,
-   H2Template,
-} from "./00_SCTemplate";
-import { configs } from "./02_stackConfigs";
+import { FlexColumnDiv, H3Template, TextTemplate, Link } from "./00_SCTemplate";
 import { PageTurnerLeft, PageTurnerRight } from "./03_projectsComp";
 
 const PanelWrap = styled.div`
@@ -82,7 +75,8 @@ interface PreviewProps {
 const PreviewWrap = styled.div<PreviewProps>`
    position: absolute;
    width: 20vw;
-   background-color: ${(props) => props.theme.colors.bg3};
+   background-color: ${(props) => props.theme.colors.bg4};
+   backdrop-filter: blur(15px);
    padding: 10px;
    border-radius: 15px;
    top: ${({ y }) => `${y}px`};
@@ -290,7 +284,7 @@ export const Panel4 = () => {
 const PageWrap = styled.div`
    width: 100%;
    height: 100%;
-   padding: 6vh 3vw 0;
+   padding: 3vh 3vw 0;
 `;
 const PageTitle = styled(H3Template)`
    left: 0;
@@ -348,10 +342,8 @@ const EduInfoWrap = styled.div`
 `;
 const EduInfo = (props: InfoProps) => {
    return (
-      <InfoWrap style={{ marginBottom: "0.5vh" }}>
-         <InfoLabel style={{ width: "5vw", fontWeight: "normal" }}>
-            {props.label}
-         </InfoLabel>
+      <InfoWrap style={{ marginBottom: "0.5rem" }}>
+         <InfoLabel style={{ width: "5vw" }}>{props.label}</InfoLabel>
          <InfoContent>{props.content}</InfoContent>
       </InfoWrap>
    );

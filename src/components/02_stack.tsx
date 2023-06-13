@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Fade from "@mui/material/Fade";
 
-import theme from "./00_theme";
 import {
    BackgroundTemplate,
    H2Template,
@@ -16,29 +15,57 @@ import { observerHanlder } from "./00_services";
 import CircleButton from "./02_stackBtn";
 import { ButtonConfig, configs, description } from "./02_stackConfigs";
 
+const StackWrap = styled(BackgroundTemplate)`
+   height: 90vh;
+`;
 const BtnContainer = styled.div`
    position: absolute;
    width: 30%;
    height: 100%;
-   top: 3vw;
+   top: 8vh;
    left: 10vw;
+   @media (max-width: 768px) {
+      left: 11vw;
+      top: 5vh;
+      width: 100%;
+   }
 `;
 
 const DescContainer = styled.div`
    position: absolute;
    width: 25%;
    height: 60vh;
-   top: 3vw;
+   top: 10vh;
    right: 20vw;
    border-radius: 15px;
    background-color: ${(props) => props.theme.colors.bg2};
    padding: 1vw 2vw;
    box-sizing: border-box;
+   @media (max-width: 768px) {
+      width: 80vw;
+      top: 40vh;
+      right: 10vw;
+      height: 50vh;
+   }
+`;
+
+const DescTitle = styled(H2Template)`
+   @media (max-width: 768px) {
+      font-size: 1.3rem;
+   }
+`;
+const DescSmallTitle = styled(H3Template)`
+   @media (max-width: 768px) {
+      font-size: 1.1rem;
+   }
 `;
 
 const DescText = styled(TextTemplate)`
    margin-top: -0.8rem;
    font-size: 1.05rem;
+   @media (max-width: 768px) {
+      font-size: 0.9rem;
+   }
 `;
 
 const StackComp = () => {
@@ -96,12 +123,12 @@ const StackComp = () => {
 
       customsize:
          hoveredButton === buttonConfig.name
-            ? `${buttonConfig.size * 1.2}vw`
-            : `${buttonConfig.size}vw`,
+            ? buttonConfig.size * 1.2
+            : buttonConfig.size,
       bgcolor: buttonConfig.color,
       bgimage: buttonConfig.icon,
-      top: `${movePos(buttonConfig, "x")}vw`,
-      left: `${movePos(buttonConfig, "y")}vw`,
+      top: movePos(buttonConfig, "x"),
+      left: movePos(buttonConfig, "y"),
       bgsize: buttonConfig.bgsize ? `${buttonConfig.bgsize}%` : "40%",
    });
 
@@ -110,7 +137,7 @@ const StackComp = () => {
    }, []);
 
    return (
-      <BackgroundTemplate>
+      <StackWrap>
          <TitleTemplate>Stacks</TitleTemplate>
          <Fade in={isVisible} timeout={600}>
             <BtnContainer ref={observeRef}>
@@ -130,25 +157,25 @@ const StackComp = () => {
             style={{ transitionDelay: "300ms" }}
          >
             <DescContainer>
-               <H2Template>{title}</H2Template>
+               <DescTitle>{title}</DescTitle>
                <Line />
-               <H3Template>{checkNull(content[0])}</H3Template>
+               <DescSmallTitle>{checkNull(content[0])}</DescSmallTitle>
                <DescText>{checkNull(content[1])}</DescText>
-               <H3Template>{checkNull(content[2])}</H3Template>
+               <DescSmallTitle>{checkNull(content[2])}</DescSmallTitle>
                <DescText>{checkNull(content[3])}</DescText>
-               <H3Template>{checkNull(content[4])}</H3Template>
+               <DescSmallTitle>{checkNull(content[4])}</DescSmallTitle>
                <DescText>{checkNull(content[5])}</DescText>
                {content[7] && content[7] !== "라이브러리명" && (
                   <div>
                      <Line />
-                     <H3Template>{content[6]}</H3Template>
+                     <DescSmallTitle>{content[6]}</DescSmallTitle>
                      <DescText>{content[7]}</DescText>
                   </div>
                )}
             </DescContainer>
          </Fade>
          <ObserveDiv ref={observeRef} />
-      </BackgroundTemplate>
+      </StackWrap>
    );
 };
 

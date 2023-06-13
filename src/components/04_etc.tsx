@@ -21,6 +21,9 @@ const TabsContainer = styled.div`
    left: 25vw;
    top: 15vh;
    width: 10vw;
+   @media (max-width: 1580px) {
+      left: 20vw;
+   }
 `;
 
 const PanelContainer = styled.div`
@@ -34,6 +37,10 @@ const PanelContainer = styled.div`
    width: 40vw;
    height: 50vh;
    overflow: hidden;
+   @media (max-width: 1580px) {
+      left: 30vw;
+      width: 50vw;
+   }
 `;
 
 const tabProps = (index: number) => {
@@ -46,6 +53,7 @@ const tabProps = (index: number) => {
          height: "10vh",
          fontSize: "1.1rem",
          fontWeight: "bold",
+         whiteSpace: "nowrap",
       },
    };
 };
