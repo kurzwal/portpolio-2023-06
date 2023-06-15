@@ -62,6 +62,9 @@ const TextComp = styled(TextTemplate)`
    white-space: nowrap;
    margin-top: -5px;
    margin-left: 10px;
+   @media (max-width: 768px) {
+      text-align: center;
+   }
 `;
 
 const MainComp = () => {
@@ -83,10 +86,15 @@ const MainComp = () => {
                      style={{ transitionDelay: "400ms" }}
                   >
                      <TextComp>
-                        어떤 기술을 사용할지 보다 어떤 기능을 만들지 <wbr />더
-                        고민하는 개발자입니다. <br />
-                        백엔드로 시작했으나 필연적으로 <wbr />
-                        프론트도 만들게 되었습니다.
+                        사용자 경험을 위해 여러 기능과 <wbr />
+                        기술을 사용하다 보니,
+                        <br />
+                        백엔드를 넘어 프론트엔드도 <wbr />
+                        만들게 되었습니다. <br />
+                        <TextComp style={{ marginLeft: 0, color: "#555" }}>
+                           <br />
+                           (본 페이지는 모바일 환경도 지원합니다)
+                        </TextComp>
                      </TextComp>
                   </Fade>
                </FlexColumnDiv>

@@ -16,7 +16,7 @@ import CircleButton from "./02_stackBtn";
 import { ButtonConfig, configs, description } from "./02_stackConfigs";
 
 const StackWrap = styled(BackgroundTemplate)`
-   height: 90vh;
+   height: 60vh;
 `;
 const BtnContainer = styled.div`
    position: absolute;
@@ -26,8 +26,9 @@ const BtnContainer = styled.div`
    left: 10vw;
    @media (max-width: 768px) {
       left: 11vw;
-      top: 5vh;
+      top: 10vw;
       width: 100%;
+      height: 45vw;
    }
 `;
 
@@ -43,9 +44,9 @@ const DescContainer = styled.div`
    box-sizing: border-box;
    @media (max-width: 768px) {
       width: 80vw;
-      top: 40vh;
+      top: 55vw;
       right: 10vw;
-      height: 50vh;
+      height: 40vh;
    }
 `;
 
@@ -151,11 +152,7 @@ const StackComp = () => {
                })}
             </BtnContainer>
          </Fade>
-         <Fade
-            in={isVisible}
-            timeout={600}
-            style={{ transitionDelay: "300ms" }}
-         >
+         <Fade in={hoveredButton !== ""}>
             <DescContainer>
                <DescTitle>{title}</DescTitle>
                <Line />

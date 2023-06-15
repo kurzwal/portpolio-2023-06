@@ -32,6 +32,9 @@ const PanelItem = styled(FlexColumnDiv)`
    justify-content: center;
    align-items: center;
    text-align: center;
+   @media (max-width: 768px) {
+      width: 23vw;
+   }
 `;
 
 interface IconProps {
@@ -58,6 +61,7 @@ const PanelBook = styled(PanelIcon)`
 const PanelTitle = styled(H3Template)`
    margin-block-start: 0.5em;
    margin-block-end: 0.5em;
+   white-space: nowrap;
 `;
 
 const Text = styled(TextTemplate)`
@@ -81,6 +85,9 @@ const PreviewWrap = styled.div<PreviewProps>`
    border-radius: 15px;
    top: ${({ y }) => `${y}px`};
    left: ${({ x }) => `${x}px`};
+   @media (max-width: 768px) {
+      width: 50vw;
+   }
 `;
 
 export const Panel1 = () => {
@@ -120,7 +127,7 @@ export const Panel1 = () => {
                >
                   캘리그라피
                </Link>
-               , 수학 및 과학 등 여러 분야에 지식과 경험이 있음
+               , 수학 및 과학 등 여러 분야에 지식과 경험이 있습니다
             </Text>
          </PanelItem>
          <PanelItem>
@@ -128,14 +135,15 @@ export const Panel1 = () => {
             <PanelTitle>발표능력</PanelTitle>
             <Text>
                수업 때 발표를 즐겨 맡았으며, 간단한 발표도 10분 정도의 준비로
-               가능함
+               가능합니다
             </Text>
          </PanelItem>
          <PanelItem>
             <PanelIcon bgimage={icon3} />
-            <PanelTitle>가르치기</PanelTitle>
+            <PanelTitle>설명하기</PanelTitle>
             <Text>
-               통분을 모르는 사람에게 미분방정식까지 가르쳐 준 적이 있음
+               남들이 이해할 수 있도록 복잡한 개념을 단순화하여 설명하는 것을
+               잘합니다.
             </Text>
          </PanelItem>
          {preview === "caligraph" && (
@@ -173,23 +181,27 @@ export const Panel2 = () => {
    };
    return (
       <PanelWrap ref={wrapRef}>
-         <PanelItem>
+         <PanelItem style={{ width: "40vw" }}>
             <PanelIcon bgimage={icon4} />
-            <PanelTitle>반복작업</PanelTitle>
+            <PanelTitle>효율중시</PanelTitle>
             <Text>
                <Link
                   onMouseEnter={handleBoring}
                   onMouseLeave={() => setPreview("")}
                >
-                  지루하고 반복적인 작업
+                  효율적이지 못한 일
                </Link>
-               에 약해요
+               을 <br />
+               하기 어려워합니다
             </Text>
          </PanelItem>
-         <PanelItem>
+         <PanelItem style={{ width: "40vw" }}>
             <PanelIcon bgimage={icon5} />
             <PanelTitle>거절하기</PanelTitle>
-            <Text>남의 부탁을 거절하는 것이 조금 어려워요</Text>
+            <Text style={{ whiteSpace: "nowrap" }}>
+               남의 부탁을 잘 거절하지 못해서 <br /> 일을 많이 맡을 때가
+               있습니다
+            </Text>
          </PanelItem>
          {preview === "boring" && (
             <PreviewWrap x={mousePosition.x} y={mousePosition.y}>
@@ -227,7 +239,7 @@ export const Panel3 = () => {
                <br />
                이해할 수 있는 IT지식
             </PanelTitle>
-            <Text>최원영 지음</Text>
+            <Text style={{ whiteSpace: "nowrap" }}>최원영 지음</Text>
             <Text>
                여러 출처로 얻은 지식들을 조각모음 하는 데에 유용했습니다
             </Text>
@@ -238,7 +250,8 @@ export const Panel3 = () => {
                style={{ height: "12.86vh", marginTop: "0.9vh" }}
             />
             <PanelTitle style={{ fontSize: "1.1rem" }}>
-               밑바닥부터 시작하는
+               밑바닥부터
+               <wbr /> 시작하는
                <br />
                딥러닝 1, 2
             </PanelTitle>
@@ -251,9 +264,6 @@ export const Panel3 = () => {
       </PanelWrap>
    );
 };
-const PanelPageWrap = styled.div`
-   overflow: hidden;
-`;
 export const Panel4 = () => {
    const [pageIndex, setPageIndex] = useState(0);
    const handlePageLeft = () => {
@@ -300,6 +310,9 @@ const InfoWrap = styled.div`
 const InfoLabel = styled(TextTemplate)`
    width: 7vw;
    font-weight: bold;
+   @media (max-width: 768px) {
+      width: 5rem;
+   }
 `;
 const InfoContent = styled(TextTemplate)``;
 interface InfoProps {
@@ -339,7 +352,40 @@ const Panel4Pg1 = () => {
 };
 const EduInfoWrap = styled.div`
    padding-left: 1vw;
+   @media (max-width: 768px) {
+      display: none;
+   }
 `;
+
+const PeriodInfoWrap = styled(InfoWrap)`
+   display: flex;
+   justify-content: baseline;
+   align-items: baseline;
+   margin-left: 1vw;
+   margin-bottom: 1vh;
+   @media (max-width: 768px) {
+      flex-direction: column;
+   }
+`;
+
+const PeriodLabel = styled(TextTemplate)`
+   text-align: center;
+   width: 10rem;
+   @media (max-width: 768px) {
+      width: 100%;
+      text-align: left;
+   }
+`;
+const PeriodInfo = (props: InfoProps) => {
+   return (
+      <PeriodInfoWrap>
+         <PeriodLabel>{props.label}</PeriodLabel>
+         <InfoContent style={{ marginLeft: "10px" }}>
+            {props.content}
+         </InfoContent>
+      </PeriodInfoWrap>
+   );
+};
 const EduInfo = (props: InfoProps) => {
    return (
       <InfoWrap style={{ marginBottom: "0.5rem" }}>
@@ -348,15 +394,24 @@ const EduInfo = (props: InfoProps) => {
       </InfoWrap>
    );
 };
+const MobileText = styled(TextTemplate)`
+   display: none;
+   color: #333;
+   margin-top: 1rem;
+   margin-left: 2rem;
+   @media (max-width: 768px) {
+      display: block;
+   }
+`;
 const Panel4Pg2 = () => {
    return (
       <PageWrap>
          <PageTitle style={{ marginBottom: "2vh" }}>학력 및 교육사항</PageTitle>
-         <Info
+         <PeriodInfo
             label="2013.03 ~ 2019.08"
             content="경기대학교 수학과 학사과정 졸업"
          />
-         <Info
+         <PeriodInfo
             label="2022.11 ~ 2023.02"
             content="코리아IT아카데미 JAVA기반 백엔드 수료"
          />
@@ -379,6 +434,10 @@ const Panel4Pg2 = () => {
                content="React / Spring Boot / MySQL 기반의 팀프로젝트 (팀장 역)"
             />
          </EduInfoWrap>
+         <MobileText>
+            JAVA기반 백엔드 수업에 대한 자세한 설명은 <br />
+            데스크탑에서 확인하실 수 있습니다.
+         </MobileText>
       </PageWrap>
    );
 };

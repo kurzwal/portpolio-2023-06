@@ -94,8 +94,8 @@ const PageTitle = styled(H2Template)`
 `;
 
 const PageTurner = styled.div`
-   width: 2vw;
-   height: 2vw;
+   width: 3rem;
+   height: 3rem;
    border-top: 15px solid rgba(255, 255, 255, 0.2);
    border-right: 15px solid rgba(255, 255, 255, 0.2);
    box-shadow: 3px -3px 3px rgba(0, 0, 0, 0.3);
@@ -106,6 +106,10 @@ const PageTurner = styled.div`
    &:active {
       margin-top: 2px;
       box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.3);
+   }
+   @media (max-width: 768px) {
+      margin-left: 1rem;
+      margin-right: 1rem;
    }
 `;
 
@@ -131,8 +135,7 @@ export const Project1 = (props: ProjectProps) => {
             <ProjectTitle>I Run You</ProjectTitle>
          </FlexDiv>
          <ProjectText>
-            SNS 기반 <wbr />
-            달리기 스케쥴 <wbr />
+            SNS 기반 달리기 스케쥴 <wbr />
             공유 서비스
          </ProjectText>
       </ProjectCard>

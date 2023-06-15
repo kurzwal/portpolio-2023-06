@@ -30,8 +30,8 @@ const ContentWrap = styled.div<PosProps>`
    overflow: hidden;
    transition: ${({ trans }) => trans};
    @media (max-width: 768px) {
-      top: 20vh;
-      height: 35vh;
+      top: 13vh;
+      height: 40vh;
    }
 `;
 
@@ -56,6 +56,10 @@ const HalfTemplate = styled(FlexColumnDiv)<ColorProps>`
    box-sizing: border-box;
    align-items: center;
    background-color: ${({ bgcolor }) => bgcolor};
+   @media (max-width: 768px) {
+      align-items: baseline;
+      padding-top: 3rem;
+   }
 `;
 
 const Front = styled(HalfTemplate)<HoverProps>`
@@ -99,20 +103,33 @@ const EnvContainer = styled.div`
    justify-content: baseline;
    width: 70%;
    margin-bottom: 0.5vh;
+   @media (max-width: 768px) {
+      flex-direction: column;
+      margin-bottom: 0;
+   }
 `;
 
 const EnvName = styled.div`
    width: 25%;
+   @media (max-width: 768px) {
+      width: 100%;
+   }
 `;
 
 const EnvDetail = styled.div`
    display: flex;
    width: 75%;
+   @media (max-width: 768px) {
+      width: 100%;
+   }
 `;
 
 const EnvTagWrap = styled.div`
    display: flex;
    margin-bottom: 0.5vh;
+   @media (max-width: 768px) {
+      margin-bottom: 0;
+   }
 `;
 
 interface EnvTagProps {
@@ -141,9 +158,23 @@ const EnvText = styled.div`
 const PageSmallTitle = styled(H3Template)`
    margin: 0;
 `;
+
+const FlexSBDiv = styled.div`
+   display: flex;
+   justify-content: space-between;
+   height: 80%;
+`;
+
+const OutlineWrap = styled(FlexSBDiv)`
+   margin-bottom: 10px;
+   @media (max-width: 768px) {
+      margin: 0;
+   }
+`;
+
 const ContentLabel = styled.div`
    font-weight: bold;
-   width: 15%;
+   width: 5rem;
    font-size: 1.1rem;
 `;
 const ContentValue = styled.div`
@@ -168,10 +199,10 @@ export const Pj1Page1 = (props: PosProps) => {
             {contents.map((content) => {
                const [key, value] = Object.entries(content)[0];
                return (
-                  <FlexSBDiv key={value} style={{ marginBottom: "10px" }}>
+                  <OutlineWrap key={value}>
                      <ContentLabel>{key}</ContentLabel>
                      <ContentValue>{value}</ContentValue>
-                  </FlexSBDiv>
+                  </OutlineWrap>
                );
             })}
          </FlexColumnDiv>
@@ -250,10 +281,14 @@ export const Pj1Page2 = (props: PosProps) => {
       </ContentWrap>
    );
 };
-const FlexSBDiv = styled.div`
-   display: flex;
-   justify-content: space-between;
-   height: 80%;
+
+const DescImgWrap = styled(FlexColumnDiv)`
+   width: 40%;
+   margin-left: 10%;
+   justify-content: end;
+   @media (max-width: 768px) {
+      justify-content: center;
+   }
 `;
 
 const ImgContainer = styled.img`
@@ -267,7 +302,7 @@ const DescText = styled.div`
    font-size: 1rem;
    margin-top: 0.3rem;
    margin-bottom: 0.5rem;
-   color: ${(props) => props.theme.colors.text2};
+   color: ${(props) => props.theme.colors.text};
    align-self: center;
 `;
 
@@ -280,16 +315,10 @@ export const Pj1Page3 = (props: PosProps) => {
                프로젝트 진행 초기에, MVC패턴과 JPA사용에서 팀원 간의 역량 차이를
                메우기 위해 자체적으로 특강을 준비한 적이 있습니다.
             </TextTemplate>
-            <FlexColumnDiv
-               style={{
-                  width: "40%",
-                  marginLeft: "10%",
-                  justifyContent: "end",
-               }}
-            >
+            <DescImgWrap>
                <ImgContainer src={mvcImg} />
                <DescText>당시 준비한 내용의 일부</DescText>
-            </FlexColumnDiv>
+            </DescImgWrap>
          </FlexSBDiv>
       </ContentWrap>
    );
@@ -337,7 +366,6 @@ export const Pj1Page5 = (props: PosProps) => {
 
 export const Pj2Page1 = (props: PosProps) => {
    const contents = [
-      { 기간: "2023.03 ~ 2023.05 (약 3개월, 미완성)" },
       { 인원: "1명" },
       { 주요기능: "Google API와 JWT를 사용한 간편 회원가입 기능" },
       { "": "React와 Phaser 라이브러리를 활용한 Game 컴포넌트 구현" },
@@ -348,13 +376,20 @@ export const Pj2Page1 = (props: PosProps) => {
    return (
       <ContentWrap posx={props.posx} trans={props.trans}>
          <FlexColumnDiv>
+            <OutlineWrap key="기간">
+               <ContentLabel>기간</ContentLabel>
+               <ContentValue style={{ whiteSpace: "nowrap" }}>
+                  2023.03 ~ 2023.05 <wbr />
+                  (약 3개월, 미완성)
+               </ContentValue>
+            </OutlineWrap>
             {contents.map((content) => {
                const [key, value] = Object.entries(content)[0];
                return (
-                  <FlexSBDiv key={value} style={{ marginBottom: "10px" }}>
+                  <OutlineWrap key={value}>
                      <ContentLabel>{key}</ContentLabel>
                      <ContentValue>{value}</ContentValue>
-                  </FlexSBDiv>
+                  </OutlineWrap>
                );
             })}
          </FlexColumnDiv>
@@ -416,19 +451,13 @@ export const Pj2Page3 = (props: PosProps) => {
                실시간으로 캐릭터의 움직임을 전송하고 받을 수 있도록
                구현하였습니다.
             </TextTemplate>
-            <FlexColumnDiv
-               style={{
-                  width: "40%",
-                  marginLeft: "10%",
-                  justifyContent: "end",
-               }}
-            >
+            <DescImgWrap>
                <ImgContainer src={cpzGif} />
                <DescText style={{ textAlign: "center" }}>
                   두 개의 클라이언트에서
                   <br /> 캐릭터 움직임
                </DescText>
-            </FlexColumnDiv>
+            </DescImgWrap>
          </FlexSBDiv>
       </ContentWrap>
    );

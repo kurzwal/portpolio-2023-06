@@ -28,5 +28,8 @@ export const GlobalStyle = createGlobalStyle`
       @media (max-width: 1580px) {
          font-size: 14px;
       }
+      @media (max-width: 768px) {
+         font-size: 12px;
+      }
    }
 `;

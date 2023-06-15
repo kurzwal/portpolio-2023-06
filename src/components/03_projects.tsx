@@ -19,7 +19,7 @@ import { Fade } from "@mui/material";
 const BackgroundComp = styled(BackgroundTemplate)`
    height: 90vh;
    @media (max-width: 768px) {
-      height: 100vh;
+      height: 80vh;
    }
 `;
 
@@ -44,8 +44,9 @@ const ProjectsContainer = styled.div`
       width: 60vw;
    }
    @media (max-width: 768px) {
-      margin-top: 13vh;
+      margin-top: 7rem;
       width: 90vw;
+      height: 11rem;
    }
 `;
 
@@ -56,13 +57,14 @@ const DescContainer = styled(ProjectsContainer)`
    padding-bottom: 0;
    overflow: hidden;
    @media (max-width: 768px) {
-      height: 70vh;
+      margin-top: 10px;
+      height: 60vh;
    }
 `;
 
 const ProjectsComp = () => {
    const [isVisible, setIsVisible] = useState(false);
-   const [hovered, setHovered] = useState("");
+   const [hovered, setHovered] = useState("pj1");
 
    const observeRef = useRef(null);
 
