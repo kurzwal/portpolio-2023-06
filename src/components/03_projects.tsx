@@ -19,7 +19,7 @@ import { Fade } from "@mui/material";
 const BackgroundComp = styled(BackgroundTemplate)`
    height: 90vh;
    @media (max-width: 768px) {
-      height: 80vh;
+      height: 90vh;
    }
 `;
 
@@ -58,7 +58,7 @@ const DescContainer = styled(ProjectsContainer)`
    overflow: hidden;
    @media (max-width: 768px) {
       margin-top: 10px;
-      height: 60vh;
+      height: 70vh;
    }
 `;
 

@@ -16,7 +16,7 @@ import CircleButton from "./02_stackBtn";
 import { ButtonConfig, configs, description } from "./02_stackConfigs";
 
 const StackWrap = styled(BackgroundTemplate)`
-   height: 60vh;
+   height: 80vh;
 `;
 const BtnContainer = styled.div`
    position: absolute;
@@ -46,7 +46,7 @@ const DescContainer = styled.div`
       width: 80vw;
       top: 55vw;
       right: 10vw;
-      height: 40vh;
+      height: 45vh;
    }
 `;
 

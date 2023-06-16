@@ -23,7 +23,7 @@ export const frontConfigs: EnvProps[] = [
    {
       name: "개발 언어",
       icons: [webIcon, jsIcon],
-      contents: ["HTML5 & CSS3", "JavaScript"],
+      contents: ["HTML & CSS", "JS"],
       sizes: ["20%", "100%"],
    },
    {
@@ -80,7 +80,7 @@ export const frontConfigs2: EnvProps[] = [
    {
       name: "개발 언어",
       icons: [webIcon, jsIcon],
-      contents: ["HTML5 & CSS3", "JavaScript"],
+      contents: ["HTML & CSS", "JS"],
       sizes: ["100%", "100%"],
    },
    {

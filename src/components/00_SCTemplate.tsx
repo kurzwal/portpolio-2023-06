@@ -65,7 +65,7 @@ export const ObserveDiv = styled.div`
 
 export const Line = styled.div`
    width: 100%;
-   margin-top: 15px;
+   margin-top: 1rem;
    border-bottom: 1px solid black;
 `;
 

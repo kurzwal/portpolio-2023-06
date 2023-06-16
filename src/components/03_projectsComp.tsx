@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSwipeable } from "react-swipeable";
 
 import icon1 from "../assets/icons/irulogo.svg";
 import icon2 from "../assets/icons/cpz.png";
@@ -40,6 +41,10 @@ const ProjectCard = styled(FlexColumnDiv)`
    &:hover {
       background-color: ${(props) => props.theme.colors.bg4};
    }
+
+   @media (max-width: 768px) {
+      padding: 10px 5px;
+   }
 `;
 
 const FlexDiv = styled.div`
@@ -62,15 +67,22 @@ const ProjectIcon = styled.div<IconProps>`
 `;
 
 const ProjectTitle = styled(H2Template)`
-   margin: 0 10px 0 15px;
+   margin: 0px 10px 0px 15px;
    white-space: nowrap;
+   @media (max-width: 768px) {
+      margin: 0px 0px 0px 5px;
+      width: 3rem;
+   }
 `;
 
 const ProjectText = styled(TextTemplate)`
-   margin: 0;
-   margin-left: 10px;
+   margin: 0px 0px 0px 10px;
    color: ${(props) => props.theme.colors.text2};
    white-space: nowrap;
+   @media (max-width: 768px) {
+      margin: 0;
+      text-align: right;
+   }
 `;
 
 const DescWrap = styled(FlexColumnDiv)`
@@ -84,6 +96,7 @@ const DetailWrap = styled(FlexColumnDiv)`
    padding-bottom: 2vh;
    width: 100%;
    height: 40vh;
+   user-select: none;
 `;
 
 const PageTitle = styled(H2Template)`
@@ -157,6 +170,13 @@ export const Project2 = (props: ProjectProps) => {
    );
 };
 
+const LinkWrap = styled.div`
+   display: inline-block;
+   @media (max-width: 768px) {
+      position: absolute;
+      right: 25px;
+   }
+`;
 export const Project1Desc = () => {
    const pj1Pages: JSX.Element[] = [
       <Pj1Page1 posx="0%" trans="all 0.2s ease-out" />,
@@ -178,13 +198,15 @@ export const Project1Desc = () => {
             <FlexDiv>
                <ProjectIcon icon={icon1} size="100%" />
                <ProjectTitle>I Run You</ProjectTitle>
-               <Link
-                  href="https://github.com/kurzwal/I-Run-You"
-                  icon={github}
-                  fontSize="1.2rem"
-               >
-                  GitHub
-               </Link>
+               <LinkWrap>
+                  <Link
+                     href="https://github.com/kurzwal/I-Run-You"
+                     icon={github}
+                     fontSize="1.2rem"
+                  >
+                     GitHub
+                  </Link>
+               </LinkWrap>
             </FlexDiv>
             <Line />
             <ProjectDetail components={pj1Pages} titles={pj1Titles} />
@@ -213,13 +235,15 @@ export const Project2Desc = () => {
             <FlexDiv>
                <ProjectIcon icon={icon2} />
                <ProjectTitle>침팬지 극장</ProjectTitle>
-               <Link
-                  href="https://github.com/kurzwal/CPZ-Theater"
-                  icon={github}
-                  fontSize="1.2rem"
-               >
-                  GitHub
-               </Link>
+               <LinkWrap>
+                  <Link
+                     href="https://github.com/kurzwal/CPZ-Theater"
+                     icon={github}
+                     fontSize="1.2rem"
+                  >
+                     GitHub
+                  </Link>
+               </LinkWrap>
             </FlexDiv>
             <Line />
             <ProjectDetail components={pj2Pages} titles={pj2Titles} />
@@ -244,6 +268,12 @@ const ProjectDetail = (props: PjDtlProps) => {
    const handlePageRight = () => {
       setPageIndex(pageIndex + 1);
    };
+
+   const handlers = useSwipeable({
+      onSwipedLeft: () => handlePageRight(),
+      onSwipedRight: () => handlePageLeft(),
+      trackMouse: true,
+   });
 
    const titles = props.titles;
 
@@ -287,7 +317,7 @@ const ProjectDetail = (props: PjDtlProps) => {
    }, [pageIndex]);
 
    return (
-      <DetailWrap>
+      <DetailWrap {...handlers}>
          <PageTitle>{getTitle()}</PageTitle>
          <PageTurnerLeft onClick={handlePageLeft} />
          <PageTurnerRight onClick={handlePageRight} />

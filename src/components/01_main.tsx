@@ -48,13 +48,17 @@ const ProfileImgComp = styled.div`
 `;
 
 const ProfileTextCard = styled.div`
+   display: flex;
+   flex-direction: column;
    background-color: ${(props) => props.theme.colors.bg2};
    padding: 30px 60px 30px 30px;
    border-radius: 15px;
    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
    @media (max-width: 768px) {
       width: 60vw;
+      padding: 30px 40px;
       text-align: center;
+      align-items: center;
    }
 `;
 
@@ -64,6 +68,15 @@ const TextComp = styled(TextTemplate)`
    margin-left: 10px;
    @media (max-width: 768px) {
       text-align: center;
+      margin-left: 0;
+   }
+`;
+
+const PCOnlyText = styled(TextComp)`
+   margin-left: 0;
+   color: #555;
+   @media (max-width: 768px) {
+      display: none;
    }
 `;
 
@@ -73,31 +86,29 @@ const MainComp = () => {
          <BlurFilter>
             <ProfileImgComp></ProfileImgComp>
             <ProfileTextCard>
-               <FlexColumnDiv>
-                  <Fade in={true} timeout={1000}>
-                     <H1Template>
-                        어쩌다 풀스택, <wbr />
-                        유열림입니다
-                     </H1Template>
-                  </Fade>
-                  <Fade
-                     in={true}
-                     timeout={1000}
-                     style={{ transitionDelay: "400ms" }}
-                  >
-                     <TextComp>
-                        사용자 경험을 위해 여러 기능과 <wbr />
-                        기술을 사용하다 보니,
+               <Fade in={true} timeout={1000}>
+                  <H1Template>
+                     어쩌다 풀스택, <wbr />
+                     유열림입니다
+                  </H1Template>
+               </Fade>
+               <Fade
+                  in={true}
+                  timeout={1000}
+                  style={{ transitionDelay: "400ms" }}
+               >
+                  <TextComp>
+                     사용자 경험을 위해 여러 기능과 <wbr />
+                     기술을 사용하다 보니,
+                     <br />
+                     백엔드를 넘어 프론트엔드도 <wbr />
+                     만들게 되었습니다. <br />
+                     <PCOnlyText>
                         <br />
-                        백엔드를 넘어 프론트엔드도 <wbr />
-                        만들게 되었습니다. <br />
-                        <TextComp style={{ marginLeft: 0, color: "#555" }}>
-                           <br />
-                           (본 페이지는 모바일 환경도 지원합니다)
-                        </TextComp>
-                     </TextComp>
-                  </Fade>
-               </FlexColumnDiv>
+                        (본 페이지는 모바일 환경도 지원합니다)
+                     </PCOnlyText>
+                  </TextComp>
+               </Fade>
             </ProfileTextCard>
          </BlurFilter>
       </BackgroundComp>

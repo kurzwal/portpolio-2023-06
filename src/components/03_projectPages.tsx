@@ -30,8 +30,8 @@ const ContentWrap = styled.div<PosProps>`
    overflow: hidden;
    transition: ${({ trans }) => trans};
    @media (max-width: 768px) {
-      top: 13vh;
-      height: 40vh;
+      top: 10rem;
+      height: 37vh;
    }
 `;
 
@@ -58,7 +58,7 @@ const HalfTemplate = styled(FlexColumnDiv)<ColorProps>`
    background-color: ${({ bgcolor }) => bgcolor};
    @media (max-width: 768px) {
       align-items: baseline;
-      padding-top: 3rem;
+      padding: 3rem 0px 0px 10px;
    }
 `;
 
@@ -88,6 +88,11 @@ const Back = styled(HalfTemplate)<HoverProps>`
          ? "polygon(100% -60%, 100% 100%, -60% 100%)"
          : "polygon(100% 0%, 100% 100%, 0% 100%)"};
    justify-content: end;
+   @media (max-width: 768px) {
+      align-items: end;
+      padding-right: 10px;
+      padding-bottom: 3rem;
+   }
 `;
 
 const BackTitle = styled(H3Template)`
@@ -105,22 +110,45 @@ const EnvContainer = styled.div`
    margin-bottom: 0.5vh;
    @media (max-width: 768px) {
       flex-direction: column;
+      align-items: end;
+      justify-content: end;
       margin-bottom: 0;
    }
 `;
 
-const EnvName = styled.div`
+const EnvNameFront = styled.div`
    width: 25%;
    @media (max-width: 768px) {
+      font-weight: bold;
       width: 100%;
    }
 `;
 
-const EnvDetail = styled.div`
+const EnvNameBack = styled.div`
+   width: 25%;
+   @media (max-width: 768px) {
+      font-weight: bold;
+      width: 100%;
+      text-align: right;
+   }
+`;
+
+const EnvDetailFront = styled.div`
    display: flex;
    width: 75%;
    @media (max-width: 768px) {
       width: 100%;
+      flex-wrap: wrap;
+   }
+`;
+
+const EnvDetailBack = styled.div`
+   display: flex;
+   width: 75%;
+   @media (max-width: 768px) {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: end;
    }
 `;
 
@@ -185,12 +213,12 @@ export const Pj1Page1 = (props: PosProps) => {
    const contents = [
       { 기간: "2023.01 ~ 2023.02 (약 2개월)" },
       { 인원: "5명" },
-      { 담당: "프로젝트 리더로써 Trunk-Based 전략의 형상관리 전담" },
-      { "": "프론트엔드의 메인 화면 SPA 제작" },
+      { 담당: "- 프로젝트 리더로써 Trunk-Based 전략의 형상관리 전담" },
+      { "": "- 프론트엔드의 메인 화면 SPA 제작" },
       {
-         "": "카카오 지도 API를 이용한 사용자 위치 기반의 공원 추천 서비스 구현",
+         "": "- 카카오 지도 API를 이용한 사용자 위치 기반의 공원 추천 서비스 구현",
       },
-      { "": "백엔드 MVC패턴의 가이드라인 제시" },
+      { "": "- 백엔드 MVC패턴의 가이드라인 제시" },
    ];
 
    return (
@@ -219,11 +247,11 @@ const EnvTag = (props: EnvTagProps) => {
    );
 };
 
-const EnvComp = ({ name, icons, contents, sizes }: EnvProps) => {
+const EnvCompFront = ({ name, icons, contents, sizes }: EnvProps) => {
    return (
       <EnvContainer>
-         <EnvName>{name}</EnvName>
-         <EnvDetail>
+         <EnvNameFront>{name}</EnvNameFront>
+         <EnvDetailFront>
             {icons.map((icon, index) => (
                <EnvTag
                   key={contents[index]}
@@ -233,7 +261,25 @@ const EnvComp = ({ name, icons, contents, sizes }: EnvProps) => {
                   {contents[index]}
                </EnvTag>
             ))}
-         </EnvDetail>
+         </EnvDetailFront>
+      </EnvContainer>
+   );
+};
+const EnvCompBack = ({ name, icons, contents, sizes }: EnvProps) => {
+   return (
+      <EnvContainer>
+         <EnvNameBack>{name}</EnvNameBack>
+         <EnvDetailBack>
+            {icons.map((icon, index) => (
+               <EnvTag
+                  key={contents[index]}
+                  icon={icon}
+                  size={sizes ? sizes[index] : ""}
+               >
+                  {contents[index]}
+               </EnvTag>
+            ))}
+         </EnvDetailBack>
       </EnvContainer>
    );
 };
@@ -254,7 +300,7 @@ export const Pj1Page2 = (props: PosProps) => {
          >
             <FrontTitle>Front</FrontTitle>
             {frontConfigs.map((config) => (
-               <EnvComp
+               <EnvCompFront
                   key={config.name + "1"}
                   name={config.name}
                   icons={config.icons}
@@ -270,7 +316,7 @@ export const Pj1Page2 = (props: PosProps) => {
          >
             <BackTitle>Back</BackTitle>
             {backConfigs.map((config) => (
-               <EnvComp
+               <EnvCompBack
                   key={config.name + ""}
                   name={config.name}
                   icons={config.icons}
@@ -351,8 +397,8 @@ export const Pj1Page5 = (props: PosProps) => {
          </DescText>
          <PageSmallTitle>관계형 데이터베이스를 구축했습니다</PageSmallTitle>
          <DescText>
-            MySQL을 통해 정형화된 데이터베이스를 구축하고 쿼리문과 JPA문법으로
-            적절하게 데이터를 조작했습니다
+            MySQL을 통해 데이터베이스를 구축하고 쿼리문과 JPA문법으로 데이터를
+            조작했습니다
          </DescText>
          <PageSmallTitle>
             리액트와 MUI를 사용하여 동적 웹을 구현했습니다
@@ -367,10 +413,10 @@ export const Pj1Page5 = (props: PosProps) => {
 export const Pj2Page1 = (props: PosProps) => {
    const contents = [
       { 인원: "1명" },
-      { 주요기능: "Google API와 JWT를 사용한 간편 회원가입 기능" },
-      { "": "React와 Phaser 라이브러리를 활용한 Game 컴포넌트 구현" },
-      { "": "node.js, Express, Colyseus 를 이용한 HTTP, WS통신 구현" },
-      { "": "MongoDB 클라이언트를 이용한 회원 및 채팅 데이터 관리" },
+      { 주요기능: "- Google API와 JWT를 사용한 간편 회원가입 기능" },
+      { "": "- React와 Phaser 라이브러리를 활용한 Game 컴포넌트 구현" },
+      { "": "- node.js, Express, Colyseus 를 이용한 HTTP, WS통신 구현" },
+      { "": "- MongoDB 클라이언트를 이용한 회원 및 채팅 데이터 관리" },
    ];
 
    return (
@@ -413,7 +459,7 @@ export const Pj2Page2 = (props: PosProps) => {
          >
             <FrontTitle>Front</FrontTitle>
             {frontConfigs2.map((config) => (
-               <EnvComp
+               <EnvCompFront
                   key={config.name + "2"}
                   name={config.name}
                   icons={config.icons}
@@ -430,7 +476,7 @@ export const Pj2Page2 = (props: PosProps) => {
          >
             <BackTitle style={{ color: "#fff" }}>Back</BackTitle>
             {backConfigs2.map((config) => (
-               <EnvComp
+               <EnvCompBack
                   key={config.name + "2"}
                   name={config.name}
                   icons={config.icons}
